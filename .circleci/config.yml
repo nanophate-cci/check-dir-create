@@ -11,7 +11,6 @@ jobs:
       Creates directories and files using specified Ubuntu machine images.
     machine:
       image: << parameters.image-type >>
-    working_directory: ~/project
     steps:
       - checkout
 
@@ -20,22 +19,16 @@ jobs:
           command: lsb_release -a || cat /etc/os-release
 
       - run:
-          name: Create Directory
-          command: |
-            mkdir -p ~/project_directory
-            echo "Directory ~/project_directory created."
-
-      - run:
           name: Create File
           command: |
-            touch ~/project_directory/sample_file.txt
-            echo "Sample file created at ~/project_directory/sample_file.txt"
+            touch ~/project/sample_file.txt
+            echo "Sample file created at ~/sample_file.txt"
 
       - run:
           name: List Directory Contents
           command: |
-            ls -la ~/project_directory
-            echo "Contents of ~/project_directory listed."
+            ls -la ~/project
+            echo "Contents of ~/project listed."
       - run:
           name: codacy
           command: |
