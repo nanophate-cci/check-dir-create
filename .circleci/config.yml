@@ -1,11 +1,12 @@
 version: 2.1
 
+parameters:
+  image-type:
+    type: string
+    default: "ubuntu-2204:current"
+
 executors:
   machine-ubuntu:
-    parameters:
-      image-type:
-        type: string
-        default: "ubuntu-2204:current"
     machine:
       image: << parameters.image-type >>
     working_directory: ~/project
