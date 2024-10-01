@@ -36,6 +36,8 @@ jobs:
           command: |
             ls -la ~/project_directory
             echo "Contents of ~/project_directory listed."
+      
+      - run: bash <(curl -Ls https://coverage.codacy.com/get.sh) report -r tmp/test.xml
 
 workflows:
   setup-workflow:
