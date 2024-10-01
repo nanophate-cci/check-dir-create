@@ -38,23 +38,23 @@ jobs:
             echo "Contents of ~/project_directory listed."
       
       - run: |
-          # Create the directory if it doesn't exist
-          mkdir -p tmp
-          
-          # Create a sample XML report file
-          cat <<EOF > tmp/test.xml
-          <?xml version="1.0" encoding="UTF-8"?>
-          <coverage>
-            <file path="samplefile.py">
-              <line number="1" hits="1"/>
-              <line number="2" hits="0"/>
-              <line number="3" hits="1"/>
-            </file>
-          </coverage>
-          EOF
-          
-          # Upload the report to Codacy
-          bash <(curl -Ls https://coverage.codacy.com/get.sh) report -r tmp/test.xml
+            # Create the directory if it doesn't exist
+            mkdir -p tmp
+            
+            # Create a sample XML report file
+            cat <<EOF > tmp/test.xml
+            <?xml version="1.0" encoding="UTF-8"?>
+            <coverage>
+              <file path="samplefile.py">
+                <line number="1" hits="1"/>
+                <line number="2" hits="0"/>
+                <line number="3" hits="1"/>
+              </file>
+            </coverage>
+            EOF
+            
+            # Upload the report to Codacy
+            bash <(curl -Ls https://coverage.codacy.com/get.sh) report -r tmp/test.xml
 
 workflows:
   setup-workflow:
