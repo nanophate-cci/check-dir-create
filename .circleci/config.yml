@@ -42,7 +42,8 @@ workflows:
     jobs:
       - setup-ubuntu:
           matrix:
-            image-type:
-              - "ubuntu-2204:current"  # Ubuntu 22.04
-              - "ubuntu-2004:current"  # Ubuntu 20.04
-              - "ubuntu-2404:current"  # Ubuntu 24.04 (Ensure this image exists)
+            parameters:
+              image-type:
+                - "ubuntu-2204:current"  # Ubuntu 22.04
+                - "ubuntu-2004:current"  # Ubuntu 20.04
+                - "ubuntu-2404:current"  # Ubuntu 24.04 (Ensure this image exists)
