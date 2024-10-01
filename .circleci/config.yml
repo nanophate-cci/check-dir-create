@@ -5,19 +5,13 @@ parameters:
     type: string
     default: "ubuntu-2204:current"
 
-executors:
-  machine-ubuntu:
-    machine:
-      image: << parameters.image-type >>
-    working_directory: ~/project
-
 jobs:
   setup-ubuntu:
     description: >
       Creates directories and files using specified Ubuntu machine images.
-    executor:
-      name: machine-ubuntu
-      image-type: << parameters.image-type >>
+    machine:
+      image: << pipeline.parameters.image-type >>
+    working_directory: ~/project
     steps:
       - checkout
 
