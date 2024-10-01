@@ -1,0 +1,6 @@
+services:
+  myservice:
+    image: alpine  # Use an appropriate image for your use case
+    volumes:
+      - ./data:/app/data  # Bind mount `./data` directory to `/app/data` in the container
+    command: sh -c "echo 'Hello, World!' > /app/data/hello.txt"
