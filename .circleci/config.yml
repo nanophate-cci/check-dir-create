@@ -1,16 +1,16 @@
 version: 2.1
 
-parameters:
-  image-type:
-    type: string
-    default: "ubuntu-2204:current"
 
 jobs:
   setup-ubuntu:
+    parameters:
+      image-type:
+        type: string
+        default: "ubuntu-2204:current"
     description: >
       Creates directories and files using specified Ubuntu machine images.
     machine:
-      image: << pipeline.parameters.image-type >>
+      image: << parameters.image-type >>
     working_directory: ~/project
     steps:
       - checkout
