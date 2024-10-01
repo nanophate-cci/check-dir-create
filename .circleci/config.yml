@@ -36,8 +36,9 @@ jobs:
           command: |
             ls -la ~/project_directory
             echo "Contents of ~/project_directory listed."
-      
-      - run: |
+      - run:
+          name: codacy
+          command: |
             # Create the directory if it doesn't exist
             mkdir -p tmp
             
