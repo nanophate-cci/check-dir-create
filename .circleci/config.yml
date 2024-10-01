@@ -13,7 +13,7 @@ jobs:
       Creates directories and files using specified Ubuntu machine images.
     executor:
       name: machine-ubuntu
-      image: << parameters.image-type >>
+      image-type: << parameters.image-type >>
     parameters:
       image-type:
         type: string
