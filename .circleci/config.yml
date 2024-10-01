@@ -25,6 +25,18 @@ jobs:
             echo "Sample file created at ~/sample_file.txt"
 
       - run:
+          name: Run Docker info
+          command: docker info
+
+      - run:
+          name: Run Docker Compose
+          command: docker-compose up --exit-code-from myservice
+          
+      - run:
+          name: Check the generated file
+          command: cat data/hello.txt
+
+      - run:
           name: List Directory Contents
           command: |
             ls -la ~/project
@@ -37,6 +49,7 @@ jobs:
       
             # Upload the report to Codacy
             bash <(curl -Ls https://coverage.codacy.com/get.sh) report -r ~/project/tmp/test.xml
+
 
 
 workflows:
