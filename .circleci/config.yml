@@ -1,0 +1,53 @@
+version: 2.1
+
+executors:
+  machine-ubuntu:
+    machine:
+      # The Ubuntu image will be dynamically set via the job parameters
+      image: << parameters.image-type >>
+    working_directory: ~/project
+
+jobs:
+  setup-ubuntu:
+    description: >
+      Creates directories and files using specified Ubuntu machine images.
+    executor:
+      name: machine-ubuntu
+      image: << parameters.image-type >>
+    parameters:
+      image-type:
+        type: string
+        default: ubuntu-2204:2024.05.1  # Default to Ubuntu 22.04
+    steps:
+      - checkout
+
+      - run:
+          name: Display Ubuntu Version
+          command: lsb_release -a
+
+      - run:
+          name: Create Directory
+          command: |
+            mkdir -p ~/project_directory
+            echo "Directory ~/project_directory created."
+
+      - run:
+          name: Create File
+          command: |
+            touch ~/project_directory/sample_file.txt
+            echo "Sample file created at ~/project_directory/sample_file.txt"
+
+      - run:
+          name: List Directory Contents
+          command: |
+            ls -la ~/project_directory
+            echo "Contents of ~/project_directory listed."
+
+workflows:
+  version: 2
+  setup-workflow:
+    jobs:
+      - setup-ubuntu:
+          matrix:
+            parameters:
+              image-type: ["ubuntu-2204:current", "ubuntu-2404:current", "ubuntu-2004:current"]
