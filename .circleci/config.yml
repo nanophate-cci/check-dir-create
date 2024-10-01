@@ -28,6 +28,8 @@ jobs:
           name: Run Docker info
           command: docker info
 
+     - run:  ls -la /usr/local/bin/docker-compose
+
       - run:
           name: Run Docker Compose
           command: docker-compose up --exit-code-from myservice
