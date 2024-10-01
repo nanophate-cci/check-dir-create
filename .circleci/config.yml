@@ -29,8 +29,8 @@ jobs:
           command: |
             ls -la ~/project
             echo "Contents of ~/project listed."
-            ls -la ~/test
-            echo "Contents of ~/test listed."
+            ls -la ~/tmp
+            echo "Contents of ~/tmp listed."
       - run:
           name: codacy
           command: |
