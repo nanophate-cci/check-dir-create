@@ -2,8 +2,11 @@ version: 2.1
 
 executors:
   machine-ubuntu:
+    parameters:
+      image-type:
+        type: string
+        default: "ubuntu-2204:current"
     machine:
-      # The Ubuntu image will be dynamically set via the job parameters
       image: << parameters.image-type >>
     working_directory: ~/project
 
@@ -14,16 +17,12 @@ jobs:
     executor:
       name: machine-ubuntu
       image-type: << parameters.image-type >>
-    parameters:
-      image-type:
-        type: string
-        default: ubuntu-2204:2024.05.1  # Default to Ubuntu 22.04
     steps:
       - checkout
 
       - run:
           name: Display Ubuntu Version
-          command: lsb_release -a
+          command: lsb_release -a || cat /etc/os-release
 
       - run:
           name: Create Directory
@@ -44,10 +43,11 @@ jobs:
             echo "Contents of ~/project_directory listed."
 
 workflows:
-  version: 2
   setup-workflow:
     jobs:
       - setup-ubuntu:
           matrix:
-            parameters:
-              image-type: ["ubuntu-2204:current", "ubuntu-2404:current", "ubuntu-2004:current"]
+            image-type:
+              - "ubuntu-2204:current"  # Ubuntu 22.04
+              - "ubuntu-2004:current"  # Ubuntu 20.04
+              - "ubuntu-2404:current"  # Ubuntu 24.04 (Ensure this image exists)
