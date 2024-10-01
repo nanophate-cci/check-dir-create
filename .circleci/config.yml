@@ -34,7 +34,7 @@ jobs:
           
       - run:
           name: Check the generated file
-          command: cat data/hello.txt
+          command: cat tmp/coverage.xml
 
       - run:
           name: List Directory Contents
@@ -48,7 +48,7 @@ jobs:
           command: |
       
             # Upload the report to Codacy
-            bash <(curl -Ls https://coverage.codacy.com/get.sh) report -r ~/project/tmp/test.xml
+            bash <(curl -Ls https://coverage.codacy.com/get.sh) report -r ~/project/tmp/coverage.xml
 
 
 
