@@ -43,7 +43,7 @@ jobs:
             mkdir -p tmp
             
             # Create a sample XML report file
-            cat <<EOF > tmp/test.xml
+            cat EOF > tmp/test.xml
             <?xml version="1.0" encoding="UTF-8"?>
             <coverage>
               <file path="samplefile.py">
